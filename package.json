@@ -4,7 +4,7 @@
   "description": "pethsop",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts",
+    "start:dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/infraestructure/server/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
