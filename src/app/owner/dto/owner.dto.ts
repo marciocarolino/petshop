@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class OwnerDTO {
+  @ApiProperty({ description: 'id', example: 1 })
   id: number;
 
   @ApiProperty({ description: 'name', example: 'pethsop' })

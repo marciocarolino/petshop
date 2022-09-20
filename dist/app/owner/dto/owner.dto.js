@@ -14,6 +14,10 @@ const swagger_1 = require("@nestjs/swagger");
 class OwnerDTO {
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({ description: 'id', example: 1 }),
+    __metadata("design:type", Number)
+], OwnerDTO.prototype, "id", void 0);
+__decorate([
     (0, swagger_1.ApiProperty)({ description: 'name', example: 'pethsop' }),
     __metadata("design:type", String)
 ], OwnerDTO.prototype, "name", void 0);

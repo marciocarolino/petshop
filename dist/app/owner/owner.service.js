@@ -17,12 +17,39 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const owner_entity_1 = require("../../database/entities/owner.entity");
 const typeorm_2 = require("typeorm");
+const owner_exception_1 = require("./exception/owner.exception");
 let OwnerService = class OwnerService {
     constructor(ownerRepository) {
         this.ownerRepository = ownerRepository;
     }
-    async findAll() {
-        return this.ownerRepository.find();
+    async ownerAll() {
+        return this.ownerRepository.find({ where: { active: true } });
+    }
+    async ownerCreate(ownerDTO) {
+        const verifyCpf = await this.ownerRepository.findOne({
+            where: { cpf: ownerDTO.cpf },
+        });
+        if (verifyCpf) {
+            throw new owner_exception_1.OwnerExceptionCPF();
+        }
+        const createOwner = this.ownerRepository.create(Object.assign(Object.assign({}, ownerDTO), { active: true, created_at: new Date(), updated_at: new Date() }));
+        await this.ownerRepository.save(createOwner);
+        return createOwner;
+    }
+    async ownerDelete(id_owner) {
+        const verifyOwner = await this.ownerRepository.findOne({
+            where: { id: id_owner },
+        });
+        if (!verifyOwner) {
+            throw new owner_exception_1.OwnerExceptionDelete();
+        }
+        const createOwner = this.ownerRepository.create({
+            active: false,
+            created_at: new Date(),
+            updated_at: new Date(),
+        });
+        await this.ownerRepository.save(createOwner);
+        return createOwner;
     }
 };
 OwnerService = __decorate([
