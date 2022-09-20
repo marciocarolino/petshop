@@ -8,6 +8,6 @@ export class OwnerExceptionCPF extends HttpException {
 
 export class OwnerExceptionDelete extends HttpException {
   constructor() {
-    super('Owner NÃO ENCONTRADO', HttpStatus.NOT_FOUND);
+    super('PROPRIETARIO NÃO ENCONTRADO', HttpStatus.NOT_FOUND);
   }
 }

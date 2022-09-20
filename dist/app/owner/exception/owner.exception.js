@@ -10,7 +10,7 @@ class OwnerExceptionCPF extends common_1.HttpException {
 exports.OwnerExceptionCPF = OwnerExceptionCPF;
 class OwnerExceptionDelete extends common_1.HttpException {
     constructor() {
-        super('Owner NÃO ENCONTRADO', common_1.HttpStatus.NOT_FOUND);
+        super('PROPRIETARIO NÃO ENCONTRADO', common_1.HttpStatus.NOT_FOUND);
     }
 }
 exports.OwnerExceptionDelete = OwnerExceptionDelete;
