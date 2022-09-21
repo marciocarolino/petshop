@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { OwnerModule } from './owner/owner.module';
+import { PetModule } from './pet/pet.module';
 
 @Module({
-  imports: [OwnerModule],
+  imports: [OwnerModule, PetModule],
   controllers: [],
   providers: [],
   exports: [],
