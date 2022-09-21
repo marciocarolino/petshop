@@ -50,13 +50,12 @@ let OwnerService = class OwnerService {
             where: { active: true },
             order: { id: 'ASC' },
         });
-        verifyCpfEquals.forEach((item, indice, array) => {
+        verifyCpfEquals.forEach((item, indice) => {
             if (verifyCpfEquals[indice].id !== verifyOwner.id) {
                 if (verifyCpfEquals[indice].cpf === ownerDTO.cpf) {
                     throw new owner_exception_1.OwnerExceptionCPF();
                 }
             }
-            return;
         });
         (verifyOwner.name = ownerDTO.name),
             (verifyOwner.cpf = ownerDTO.cpf),

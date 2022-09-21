@@ -55,13 +55,12 @@ export class OwnerService {
       order: { id: 'ASC' },
     });
 
-    verifyCpfEquals.forEach((item, indice, array) => {
+    verifyCpfEquals.forEach((item, indice) => {
       if (verifyCpfEquals[indice].id !== verifyOwner.id) {
         if (verifyCpfEquals[indice].cpf === ownerDTO.cpf) {
           throw new OwnerExceptionCPF();
         }
       }
-      return;
     });
 
     (verifyOwner.name = ownerDTO.name),
