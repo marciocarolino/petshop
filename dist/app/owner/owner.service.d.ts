@@ -6,5 +6,6 @@ export declare class OwnerService {
     constructor(ownerRepository: Repository<OwnerEntity>);
     ownerAll(): Promise<OwnerDTO[]>;
     ownerCreate(ownerDTO: OwnerDTO): Promise<OwnerDTO>;
+    ownerUpdate(ownerDTO: OwnerDTO, id_owner: number): Promise<OwnerDTO>;
     ownerDelete(id_owner: number): Promise<OwnerDTO>;
 }

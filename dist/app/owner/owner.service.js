@@ -39,6 +39,23 @@ let OwnerService = class OwnerService {
         await this.ownerRepository.save(createOwner);
         return createOwner;
     }
+    async ownerUpdate(ownerDTO, id_owner) {
+        const verifyOwner = await this.ownerRepository.findOne({
+            where: { id: id_owner, active: true },
+        });
+        if (!verifyOwner) {
+            throw new owner_exception_1.OwnerExceptionDelete();
+        }
+        (verifyOwner.name = ownerDTO.name),
+            (verifyOwner.cpf = ownerDTO.cpf),
+            (verifyOwner.phone = ownerDTO.phone),
+            (verifyOwner.phone_ddd = ownerDTO.phone_ddd),
+            (verifyOwner.city = ownerDTO.city),
+            (verifyOwner.state = ownerDTO.state),
+            (verifyOwner.active = ownerDTO.active),
+            await this.ownerRepository.save(verifyOwner);
+        return verifyOwner;
+    }
     async ownerDelete(id_owner) {
         const verifyOwner = await this.ownerRepository.findOne({
             where: { id: id_owner, active: true },
@@ -48,8 +65,8 @@ let OwnerService = class OwnerService {
         }
         verifyOwner.updated_at = new Date();
         verifyOwner.active = false;
-        const resultDelete = await this.ownerRepository.save(verifyOwner);
-        return resultDelete;
+        await this.ownerRepository.save(verifyOwner);
+        return verifyOwner;
     }
 };
 OwnerService = __decorate([

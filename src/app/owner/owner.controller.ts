@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { OwnerDTO } from './dto/owner.dto';
 import { OwnerService } from './owner.service';
@@ -17,6 +25,15 @@ export class OwnerController {
   async ownerCreate(@Body() ownerDTO: OwnerDTO): Promise<OwnerDTO> {
     const owner = this.ownerService.ownerCreate(ownerDTO);
     return owner;
+  }
+
+  @Put(':id')
+  async ownerUpdate(
+    @Body() ownerDTO: OwnerDTO,
+    @Param('id') id: number,
+  ): Promise<OwnerDTO> {
+    const ownerUpdate = await this.ownerService.ownerUpdate(ownerDTO, id);
+    return ownerUpdate;
   }
 
   @Delete(':id')

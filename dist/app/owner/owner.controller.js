@@ -28,6 +28,10 @@ let OwnerController = class OwnerController {
         const owner = this.ownerService.ownerCreate(ownerDTO);
         return owner;
     }
+    async ownerUpdate(ownerDTO, id) {
+        const ownerUpdate = await this.ownerService.ownerUpdate(ownerDTO, id);
+        return ownerUpdate;
+    }
     async ownerDelete(id_owner) {
         return await this.ownerService.ownerDelete(id_owner);
     }
@@ -45,6 +49,14 @@ __decorate([
     __metadata("design:paramtypes", [owner_dto_1.OwnerDTO]),
     __metadata("design:returntype", Promise)
 ], OwnerController.prototype, "ownerCreate", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [owner_dto_1.OwnerDTO, Number]),
+    __metadata("design:returntype", Promise)
+], OwnerController.prototype, "ownerUpdate", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
