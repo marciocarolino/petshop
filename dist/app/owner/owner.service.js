@@ -46,6 +46,18 @@ let OwnerService = class OwnerService {
         if (!verifyOwner) {
             throw new owner_exception_1.OwnerExceptionDelete();
         }
+        const verifyCpfEquals = await this.ownerRepository.find({
+            where: { active: true },
+            order: { id: 'ASC' },
+        });
+        verifyCpfEquals.forEach((item, indice, array) => {
+            if (verifyCpfEquals[indice].id !== verifyOwner.id) {
+                if (verifyCpfEquals[indice].cpf === ownerDTO.cpf) {
+                    throw new owner_exception_1.OwnerExceptionCPF();
+                }
+            }
+            return;
+        });
         (verifyOwner.name = ownerDTO.name),
             (verifyOwner.cpf = ownerDTO.cpf),
             (verifyOwner.phone = ownerDTO.phone),
