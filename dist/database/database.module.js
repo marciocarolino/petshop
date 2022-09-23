@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const owner_entity_1 = require("./entities/owner.entity");
+const pet_entity_1 = require("./entities/pet.entity");
 let DataBaseModule = class DataBaseModule {
 };
 DataBaseModule = __decorate([
@@ -24,7 +25,7 @@ DataBaseModule = __decorate([
                 username: process.env.DATABASE_USER,
                 password: process.env.DATABASE_PASSWORD,
                 database: process.env.DATABASE_DB,
-                entities: [owner_entity_1.OwnerEntity],
+                entities: [owner_entity_1.OwnerEntity, pet_entity_1.PetEntity],
                 synchronize: false,
             }),
         ],

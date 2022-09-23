@@ -6,19 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PetShopModule = void 0;
+exports.PetModule = void 0;
 const common_1 = require("@nestjs/common");
-const owner_module_1 = require("./owner/owner.module");
-const pet_module_1 = require("./pet/pet.module");
-let PetShopModule = class PetShopModule {
+const typeorm_1 = require("@nestjs/typeorm");
+const pet_entity_1 = require("../../database/entities/pet.entity");
+const pet_controller_1 = require("./pet.controller");
+const pet_service_1 = require("./pet.service");
+let PetModule = class PetModule {
 };
-PetShopModule = __decorate([
+PetModule = __decorate([
     (0, common_1.Module)({
-        imports: [owner_module_1.OwnerModule, pet_module_1.PetModule],
-        controllers: [],
-        providers: [],
-        exports: [],
+        imports: [typeorm_1.TypeOrmModule.forFeature([pet_entity_1.PetEntity])],
+        controllers: [pet_controller_1.PetController],
+        providers: [pet_service_1.PetService],
+        exports: [pet_service_1.PetService],
     })
-], PetShopModule);
-exports.PetShopModule = PetShopModule;
-//# sourceMappingURL=petshop.module.js.map
+], PetModule);
+exports.PetModule = PetModule;
+//# sourceMappingURL=pet.module.js.map

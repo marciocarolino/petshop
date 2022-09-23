@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { PetEntity } from './pet.entity';
 
 @Entity({ name: 'owner' })
 export class OwnerEntity {
@@ -25,6 +32,10 @@ export class OwnerEntity {
 
   @Column({ name: 'active' })
   active: boolean;
+
+  @OneToMany(() => PetEntity, (pet) => pet.owner)
+  @JoinColumn({ name: 'id_owner' })
+  pet: PetEntity;
 
   @Column({ type: 'timestamptz', name: 'created_at' })
   created_at: Date;

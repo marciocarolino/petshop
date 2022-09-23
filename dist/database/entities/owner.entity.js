@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OwnerEntity = void 0;
 const typeorm_1 = require("typeorm");
+const pet_entity_1 = require("./pet.entity");
 let OwnerEntity = class OwnerEntity {
 };
 __decorate([
@@ -45,6 +46,11 @@ __decorate([
     (0, typeorm_1.Column)({ name: 'active' }),
     __metadata("design:type", Boolean)
 ], OwnerEntity.prototype, "active", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => pet_entity_1.PetEntity, (pet) => pet.owner),
+    (0, typeorm_1.JoinColumn)({ name: 'id_owner' }),
+    __metadata("design:type", pet_entity_1.PetEntity)
+], OwnerEntity.prototype, "pet", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'timestamptz', name: 'created_at' }),
     __metadata("design:type", Date)

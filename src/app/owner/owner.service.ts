@@ -17,6 +17,7 @@ export class OwnerService {
 
   async ownerAll(): Promise<OwnerDTO[]> {
     return this.ownerRepository.find({
+      relations: ['pet'],
       where: { active: true },
       order: { id: 'ASC' },
     });
@@ -24,6 +25,7 @@ export class OwnerService {
 
   async ownerCreate(ownerDTO: OwnerDTO): Promise<OwnerDTO> {
     const verifyCpf = await this.ownerRepository.findOne({
+      relations: ['pet'],
       where: { cpf: ownerDTO.cpf },
     });
 

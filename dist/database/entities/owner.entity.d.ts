@@ -1,3 +1,4 @@
+import { PetEntity } from './pet.entity';
 export declare class OwnerEntity {
     id: number;
     name: string;
@@ -7,6 +8,7 @@ export declare class OwnerEntity {
     city: string;
     state: string;
     active: boolean;
+    pet: PetEntity;
     created_at: Date;
     updated_at: Date;
 }

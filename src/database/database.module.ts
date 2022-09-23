@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OwnerEntity } from './entities/owner.entity';
+import { PetEntity } from './entities/pet.entity';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { OwnerEntity } from './entities/owner.entity';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_DB,
-      entities: [OwnerEntity],
+      entities: [OwnerEntity, PetEntity],
       synchronize: false,
     }),
   ],

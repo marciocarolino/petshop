@@ -24,12 +24,14 @@ let OwnerService = class OwnerService {
     }
     async ownerAll() {
         return this.ownerRepository.find({
+            relations: ['pet'],
             where: { active: true },
             order: { id: 'ASC' },
         });
     }
     async ownerCreate(ownerDTO) {
         const verifyCpf = await this.ownerRepository.findOne({
+            relations: ['pet'],
             where: { cpf: ownerDTO.cpf },
         });
         if (verifyCpf) {
