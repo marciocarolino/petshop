@@ -17,14 +17,14 @@ export class PetDTO {
   @ApiProperty({ description: 'especie', example: 'especie' })
   especie: string;
 
-  owner: OwnerEntity;
+  owner?: OwnerEntity;
 
   @ApiProperty({ description: 'active', example: true })
   active: boolean;
 
   @ApiProperty({ description: 'created_at', example: new Date() })
-  created_at: Date;
+  created_at?: Date;
 
   @ApiProperty({ description: 'updated_at', example: new Date() })
-  updated_at: Date;
+  updated_at?: Date;
 }

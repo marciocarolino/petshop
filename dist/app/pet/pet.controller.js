@@ -8,15 +8,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PetController = void 0;
 const common_1 = require("@nestjs/common");
+const pet_dto_1 = require("./dto/pet.dto");
 const pet_service_1 = require("./pet.service");
 let PetController = class PetController {
     constructor(petService) {
         this.petService = petService;
     }
+    async petAll() {
+        return this.petService.petAll();
+    }
+    async createPet(petDTO, id_owner) {
+        return this.petService.createPet(petDTO, id_owner);
+    }
 };
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PetController.prototype, "petAll", null);
+__decorate([
+    (0, common_1.Post)(':id'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [pet_dto_1.PetDTO, Number]),
+    __metadata("design:returntype", Promise)
+], PetController.prototype, "createPet", null);
 PetController = __decorate([
     (0, common_1.Controller)('pet'),
     __metadata("design:paramtypes", [pet_service_1.PetService])
